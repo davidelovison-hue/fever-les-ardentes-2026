@@ -1,0 +1,466 @@
+/* Post-checkout — centered stack (LIV-style framework), Pacha dark surfaces */
+
+.orderConfirmPage {
+  min-height: 100dvh;
+  min-width: 0;
+  width: 100%;
+  background: transparent;
+  color: var(--checkout-text);
+  color-scheme: dark;
+}
+
+/* Top bar (dense, dark — like reference nav) */
+.orderConfirmTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem max(1rem, env(safe-area-inset-right, 0px)) 0.65rem
+    max(1rem, env(safe-area-inset-left, 0px));
+  padding-top: max(0.65rem, env(safe-area-inset-top, 0px));
+  background: rgba(6, 6, 8, 0.92);
+  border-bottom: 1px solid var(--checkout-border-soft);
+}
+
+.orderConfirmTopBar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--checkout-text);
+}
+
+.orderConfirmTopBar__brand img {
+  display: block;
+}
+
+.orderConfirmTopBar__wordmark {
+  font-family: var(--font-display, 'TT Hoves', system-ui, sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.orderConfirmTopBar__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.orderConfirmTopBar__link {
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--checkout-text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.orderConfirmTopBar__link:hover {
+  color: var(--checkout-text);
+}
+
+.orderConfirmTopBar__lang {
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--checkout-text-dim);
+  letter-spacing: 0.04em;
+}
+
+.orderConfirmTopBar__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--checkout-border);
+  color: var(--checkout-text-muted);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+@media (max-width: 520px) {
+  .orderConfirmTopBar__link {
+    font-size: 0.75rem;
+  }
+
+  .orderConfirmTopBar__lang {
+    display: none;
+  }
+}
+
+.orderConfirmPage__shell {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 64rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.75rem max(1.25rem, env(safe-area-inset-right, 0px)) calc(2.25rem + env(safe-area-inset-bottom, 0px))
+    max(1.25rem, env(safe-area-inset-left, 0px));
+}
+
+.orderConfirmPage__shell--narrow {
+  max-width: 28rem;
+}
+
+.orderConfirmStack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.orderConfirmCard {
+  border-radius: var(--checkout-radius-card, 0.75rem);
+  padding: 1.25rem 1.2rem;
+  background: var(--checkout-surface-card);
+  border: 1px solid var(--checkout-border);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.orderConfirmEventRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.orderConfirmEventRow__img {
+  flex-shrink: 0;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--checkout-border-soft);
+}
+
+.orderConfirmEventRow__text {
+  min-width: 0;
+}
+
+.orderConfirmEventRow__title {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-display, 'TT Hoves', system-ui, sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--checkout-text);
+}
+
+.orderConfirmEventRow__id {
+  margin: 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--checkout-text-muted);
+  line-height: 1.35;
+}
+
+.orderConfirmEventRow__idLabel {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--checkout-text-dim);
+  margin-bottom: 0.15rem;
+}
+
+.orderConfirmVenue {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--checkout-border-soft);
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--checkout-text);
+}
+
+.orderConfirmVenue__icon {
+  flex-shrink: 0;
+  display: flex;
+  margin-top: 0.1rem;
+  color: var(--checkout-text-muted);
+}
+
+/* Collapsible order summary */
+.orderConfirmAccordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--checkout-text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.orderConfirmAccordion__trigger:hover {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.orderConfirmAccordion__chev {
+  font-size: 0.85rem;
+  color: var(--checkout-text-muted);
+  transition: transform 0.2s ease;
+}
+
+.orderConfirmAccordion__chev--open {
+  transform: rotate(180deg);
+}
+
+.orderConfirmAccordion__panel {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.25s ease;
+}
+
+.orderConfirmAccordion__panel--open {
+  max-height: 24rem;
+  opacity: 1;
+  padding-top: 0.35rem;
+}
+
+.orderConfirmLines {
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.orderConfirmLine {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--checkout-text);
+}
+
+.orderConfirmLine--muted {
+  color: var(--checkout-text-muted);
+  font-weight: 500;
+}
+
+.orderConfirmLine__price {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.orderConfirmTotal {
+  margin: 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--checkout-border-soft);
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--checkout-text);
+}
+
+.orderConfirmTotal strong {
+  font-weight: 800;
+}
+
+/* My tickets */
+.orderConfirmMyTickets__heading {
+  margin: 0 0 1rem;
+  font-family: var(--font-display, 'TT Hoves', system-ui, sans-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--checkout-text);
+}
+
+.orderConfirmTicketBlock {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--checkout-border-soft);
+}
+
+.orderConfirmTicketBlock__line {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--checkout-text);
+  line-height: 1.3;
+}
+
+.orderConfirmTicketBlock__when {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--checkout-text-muted);
+}
+
+.orderConfirmTicketBlock__tid {
+  margin: 0;
+  font-family: var(--font-ui, monospace, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--checkout-text);
+}
+
+.orderConfirmTicketBlock__tidLabel {
+  display: block;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--checkout-text-dim);
+  margin-bottom: 0.2rem;
+}
+
+.orderConfirmInstructions {
+  margin-bottom: 1.1rem;
+}
+
+.orderConfirmInstructions__toggle {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--checkout-text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.orderConfirmInstructions__more {
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--pacha-cherry, #c10230);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.orderConfirmInstructions__body {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.25s ease;
+}
+
+.orderConfirmInstructions__body--open {
+  max-height: 12rem;
+  opacity: 1;
+  margin-top: 0.65rem;
+}
+
+.orderConfirmInstructions__body p {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--checkout-text-muted);
+}
+
+.orderConfirmInstructions__body p:last-child {
+  margin-bottom: 0;
+}
+
+.orderConfirmWalletNote {
+  margin: 0.65rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--checkout-text-dim);
+  text-align: center;
+}
+
+.orderConfirmFooter {
+  text-align: center;
+  padding: 0.25rem 0 0.5rem;
+}
+
+.orderConfirmFooter__email,
+.orderConfirmFooter__legal,
+.orderConfirmFooter__help {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--checkout-text-muted);
+}
+
+.orderConfirmFooter__help {
+  margin-bottom: 0;
+}
+
+.orderConfirmFooter a {
+  color: var(--pacha-cherry, #c10230);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.orderConfirmFooter a:hover {
+  text-decoration: underline;
+}
+
+.orderConfirmCtaWrap {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0 0;
+}
+
+.orderConfirmCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(100%, 18rem);
+  min-height: var(--pacha-btn-cta-min-height, 2.875rem);
+  padding: 0.625rem 1.75rem;
+  border-radius: 10rem;
+  border: 2px solid var(--checkout-text);
+  background: rgba(255, 255, 255, 0.04);
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--checkout-text);
+  text-decoration: none;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.orderConfirmCta:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.orderConfirmFineprint {
+  margin-top: 1.75rem;
+}

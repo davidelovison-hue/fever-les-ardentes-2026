@@ -1,0 +1,129 @@
+/* LIV-style “Almost there” overlay after email verification (local dev). */
+
+.connectAlmostModal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.connectAlmostModal__card {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 22.5rem;
+  padding: 1.75rem 1.5rem 1.5rem;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: #181a1b;
+  color-scheme: light;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.connectAlmostModal__title {
+  margin: 0 0 0.35rem;
+  font-family: var(--font-display, 'TT Hoves', system-ui, sans-serif);
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: #181a1b;
+  text-align: center;
+}
+
+.connectAlmostModal__lead {
+  margin: 0 0 1.35rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(24, 26, 27, 0.55);
+  text-align: center;
+}
+
+.connectAlmostModal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.connectAlmostModal__input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid rgba(24, 26, 27, 0.22);
+  border-radius: 0.35rem;
+  background: #fff;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #181a1b;
+  transition: border-color 0.15s ease;
+}
+
+.connectAlmostModal__input--muted {
+  border-color: rgba(24, 26, 27, 0.12);
+}
+
+.connectAlmostModal__input::placeholder {
+  color: rgba(24, 26, 27, 0.38);
+}
+
+.connectAlmostModal__input:hover {
+  border-color: rgba(24, 26, 27, 0.32);
+}
+
+.connectAlmostModal__input:focus {
+  outline: none;
+  border-color: rgba(24, 26, 27, 0.45);
+}
+
+.connectAlmostModal__submit {
+  width: 100%;
+  margin-top: 0.35rem;
+  min-height: 2.75rem;
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 10rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--pacha-cherry, #c10230);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.connectAlmostModal__submit:hover:not(:disabled) {
+  background: var(--pacha-cherry-mid, #bb092c);
+}
+
+.connectAlmostModal__submit:focus-visible {
+  outline: 3px solid rgba(193, 2, 48, 0.35);
+  outline-offset: 2px;
+}
+
+.connectAlmostModal__submit--disabled,
+.connectAlmostModal__submit:disabled {
+  background: #e8e8e8;
+  color: rgba(24, 26, 27, 0.38);
+  cursor: not-allowed;
+}
+
+@media (max-width: 767px) {
+  .connectAlmostModal__input {
+    font-size: 16px;
+  }
+}

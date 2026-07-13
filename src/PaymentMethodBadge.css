@@ -1,0 +1,56 @@
+.paymentBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 20px;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.paymentBadge--paypal,
+.paymentBadge--google_pay,
+.paymentBadge--apple_pay {
+  box-sizing: border-box;
+  padding: 2px 6px;
+  background: #ffffff;
+  border: 1px solid #d9dde3;
+  border-radius: 4px;
+}
+
+.paymentBadge--google_pay {
+  border-color: #dadce0;
+  border-radius: 10px;
+  padding: 3px 7px;
+}
+
+.paymentBadge--klarna {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.paymentBadge__img {
+  display: block;
+  width: auto;
+  object-fit: contain;
+}
+
+.paymentBadge--paypal .paymentBadge__img {
+  height: 14px;
+  max-width: 54px;
+}
+
+.paymentBadge--google_pay .paymentBadge__img {
+  height: 12px;
+  max-width: 44px;
+}
+
+.paymentBadge--apple_pay .paymentBadge__img {
+  height: 14px;
+  max-width: 40px;
+}
+
+.paymentBadge--klarna .paymentBadge__img {
+  height: 20px;
+  max-width: 46px;
+}

@@ -1,0 +1,68 @@
+.overviewCtaPanel {
+  box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  font-family: Montserrat, system-ui, -apple-system, sans-serif;
+}
+
+.overviewCtaBtn {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  border: none;
+  border-radius: 9999px;
+  background: #0a0a0a;
+  color: #fff;
+  font: inherit;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-line-height);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+}
+
+.overviewCtaBtn:hover {
+  background: #262626;
+}
+
+.overviewMobileCtaBar {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .overviewMobileCtaBar {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 94;
+    box-sizing: border-box;
+    padding: 0.6rem 1rem max(0.6rem, env(safe-area-inset-bottom));
+    background: #fff;
+    border-top: 1px solid #e8e8e8;
+    font-family: Montserrat, system-ui, -apple-system, sans-serif;
+  }
+
+  .overviewMobileCtaBtn {
+    width: 100%;
+    padding: 0.65rem 1rem;
+    margin: 0;
+    border: none;
+    border-radius: 9999px;
+    background: #0a0a0a;
+    color: #fff;
+    font: inherit;
+    font-size: var(--type-small-size);
+    line-height: var(--type-small-line-height);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+  }
+
+  .overviewMobileCtaBtn:hover {
+    background: #262626;
+  }
+}

@@ -1,0 +1,238 @@
+.festivalNavbar {
+  position: relative;
+  top: auto;
+  z-index: auto;
+  background: #000;
+  border-bottom: none;
+  color: #fff;
+}
+
+.festivalNavbarInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.5rem 1.25rem;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.leftCluster {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  display: block;
+  width: auto;
+  height: 2rem;
+  max-width: 7.2rem;
+}
+
+.vRuleActions {
+  width: 1px;
+  height: 1.5rem;
+  background: rgb(255 255 255 / 0.28);
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.actionsDesktop {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.iconBtn {
+  font: inherit;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-line-height);
+  font-weight: var(--font-weight-bold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.45rem;
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 0.375rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.iconBtn:hover {
+  background: rgb(255 255 255 / 0.12);
+  color: #ffd6fc;
+}
+
+.globe {
+  display: flex;
+  color: currentColor;
+}
+
+.iconBtnOnly {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 9999px;
+}
+
+.iconBtnOnly:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+
+.festivalNavbar .ticketingProfileBtn {
+  color: #fff;
+}
+
+.festivalNavbar .ticketingProfileBtn:hover {
+  background: rgb(255 255 255 / 0.12);
+}
+
+.festivalNavbar .ticketingProfileBtn:focus-visible {
+  outline-color: #ffd6fc;
+}
+
+.festivalNavbar .ticketingProfileBtn__initials {
+  background: #fff;
+  color: #000;
+}
+
+.avatarBtn {
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: rgb(255 255 255 / 0.18);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
+}
+
+.avatarBtn:focus-visible {
+  outline: 2px solid #ffd6fc;
+  outline-offset: 2px;
+}
+
+.avatarImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.actionsMobile {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .logoImg {
+    height: 2.5rem;
+    max-width: 10rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .festivalNavbarInner {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.45rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .leftCluster {
+    gap: 0;
+    min-width: 0;
+  }
+
+  .actionsDesktop {
+    display: none;
+  }
+
+  .actionsMobile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .iconBtnMobile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 0.375rem;
+    flex-shrink: 0;
+  }
+
+  .iconBtnMobile:hover {
+    background: rgb(255 255 255 / 0.12);
+  }
+
+  .iconBtnMobile:active {
+    opacity: 0.7;
+  }
+
+  .avatarBtnMobile {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: none;
+    border-radius: 9999px;
+    overflow: visible;
+    flex-shrink: 0;
+    cursor: pointer;
+    background: rgb(255 255 255 / 0.18);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
+  }
+
+  .avatarBtnMobile .avatarImg {
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  .avatarOnlineBadge {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 9999px;
+    background: #00a438;
+    border: 2px solid #000;
+    box-sizing: content-box;
+    pointer-events: none;
+  }
+}

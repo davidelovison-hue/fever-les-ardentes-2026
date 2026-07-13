@@ -1,0 +1,644 @@
+/* Guest details — form fields match dark checkout tokens (import CheckoutPage.css first) */
+
+.guestDetailsPage__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display, 'TT Hoves', system-ui, sans-serif);
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--checkout-text);
+  overflow-wrap: anywhere;
+}
+
+.guestDetailsPage__lead {
+  margin: 0 0 1.75rem;
+  max-width: 36rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: var(--checkout-text-muted);
+}
+
+.guestDetailsForm {
+  max-width: 36rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.guestField {
+  margin-bottom: 1.35rem;
+}
+
+.guestField:has(.guestPhoneField__code--open),
+.guestField:has(.guestDobField--open) {
+  position: relative;
+  z-index: 5;
+}
+
+.guestLabel {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--checkout-text);
+}
+
+.guestLabel__req {
+  color: var(--pacha-cherry, #c10230);
+  font-weight: 800;
+}
+
+.guestLabel__optional {
+  font-weight: 500;
+  color: var(--checkout-text-muted);
+}
+
+/* Segmented phone — dark checkout, same rhythm as .guestInput */
+.guestPhoneField {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-height: 3rem;
+  border: 1px solid var(--checkout-border);
+  border-radius: 0.5rem;
+  background: var(--checkout-surface-field);
+  color: var(--checkout-text);
+  color-scheme: dark;
+  overflow: visible;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.guestPhoneField--invalid {
+  border-color: rgba(255, 80, 115, 0.85);
+  box-shadow: 0 0 0 2px rgba(193, 2, 48, 0.22);
+}
+
+.guestPhoneField--invalid:focus-within {
+  border-color: var(--pacha-cherry, #c10230);
+  box-shadow: 0 0 0 3px rgba(193, 2, 48, 0.35);
+}
+
+.guestPhoneField__code {
+  position: relative;
+  flex-shrink: 0;
+  align-self: stretch;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.guestPhoneField__code--open {
+  z-index: 2;
+}
+
+.guestPhoneField__codeBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 100%;
+  min-height: 3rem;
+  padding: 0.65rem 1.85rem 0.65rem 1rem;
+  margin: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--checkout-text);
+  cursor: pointer;
+}
+
+.guestPhoneField__codeBtn:focus-visible {
+  outline: none;
+}
+
+.guestPhoneField__code--open .guestPhoneField__codeBtn {
+  box-shadow: inset 0 0 0 1px var(--pacha-cherry, #c10230);
+}
+
+.guestPhoneField__flag {
+  flex-shrink: 0;
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.guestPhoneField__codeValue {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.guestPhoneField__chev {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 0.65rem;
+  line-height: 1;
+  color: var(--checkout-text-muted);
+}
+
+.guestPhoneDropdown {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 4px);
+  z-index: 30;
+  min-width: min(20rem, calc(100vw - 2.5rem));
+  max-width: 22rem;
+  max-height: 15rem;
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  overflow-y: auto;
+  border: 1px solid var(--checkout-border);
+  border-radius: 0.5rem;
+  background: var(--checkout-surface-popover);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+  -webkit-overflow-scrolling: touch;
+}
+
+.guestPhoneDropdown__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.65rem;
+  align-items: center;
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  margin: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.guestPhoneDropdown__item:hover,
+.guestPhoneDropdown__item--active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.guestPhoneDropdown__flag {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.guestPhoneDropdown__name {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.guestPhoneDropdown__namePrimary {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--checkout-text);
+}
+
+.guestPhoneDropdown__nameAlt {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--checkout-text-muted);
+}
+
+.guestPhoneDropdown__code {
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--checkout-text-muted);
+}
+
+.guestPhoneField__divider {
+  flex-shrink: 0;
+  width: 1px;
+  align-self: stretch;
+  background: var(--checkout-border);
+}
+
+.guestPhoneField__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.65rem 1rem;
+  border: none;
+  background: transparent;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--checkout-text);
+}
+
+.guestPhoneField__input::placeholder {
+  color: var(--checkout-text-dim);
+}
+
+.guestPhoneField__input:focus {
+  outline: none;
+}
+
+.guestInputWrap {
+  position: relative;
+}
+
+.guestInput {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.65rem 2.75rem 0.65rem 1rem;
+  border: 1px solid var(--checkout-border);
+  border-radius: 0.5rem;
+  background: var(--checkout-surface-field);
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--checkout-text);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.guestInput::placeholder {
+  color: var(--checkout-text-dim);
+}
+
+.guestInput--flex {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Date of birth — calendar popover above input */
+.guestDobField {
+  position: relative;
+}
+
+.guestDobField__inputWrap .guestInput {
+  padding-right: 2.75rem;
+}
+
+.guestDobField__calendarBtn {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.35rem;
+  background: transparent;
+  color: var(--checkout-text-muted);
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.guestDobField__calendarBtn:hover {
+  color: var(--checkout-text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.guestDobField__calendarBtn--focus,
+.guestDobField--open .guestDobField__calendarBtn {
+  color: #5eb3ff;
+}
+
+.guestDobField__calendarBtn:focus-visible {
+  outline: 2px solid var(--pacha-cherry, #c10230);
+  outline-offset: 2px;
+}
+
+/* Compact popover — Ticketclub-style (~280px), dark surface */
+.guestDobCalendar {
+  position: absolute;
+  left: 0;
+  right: auto;
+  bottom: calc(100% + 4px);
+  z-index: 30;
+  box-sizing: border-box;
+  width: 17.5rem;
+  max-width: min(17.5rem, calc(100vw - 2.5rem));
+  padding: 0.5rem 0.55rem 0.4rem;
+  border: 1px solid var(--checkout-border);
+  border-radius: 0.5rem;
+  background: rgba(8, 5, 12, 0.98);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.45),
+    0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+.guestDobCalendar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  margin-bottom: 0.4rem;
+}
+
+.guestDobCalendar__monthBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.1rem 0.15rem;
+  margin: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--checkout-text);
+  cursor: default;
+}
+
+.guestDobCalendar__monthChev {
+  font-size: 0.5rem;
+  color: var(--checkout-text-muted);
+}
+
+.guestDobCalendar__nav {
+  display: flex;
+  gap: 0.1rem;
+}
+
+.guestDobCalendar__navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.25rem;
+  background: transparent;
+  font-size: 0.55rem;
+  line-height: 1;
+  color: var(--checkout-text-muted);
+  cursor: pointer;
+}
+
+.guestDobCalendar__navBtn:hover:not(:disabled) {
+  color: var(--checkout-text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.guestDobCalendar__navBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.guestDobCalendar__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1.75rem);
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 0.2rem;
+  text-align: center;
+}
+
+.guestDobCalendar__weekday {
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--checkout-text-muted);
+}
+
+.guestDobCalendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1.75rem);
+  justify-content: center;
+  gap: 0.1rem;
+}
+
+.guestDobCalendar__day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.25rem;
+  background: transparent;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--checkout-text);
+  cursor: pointer;
+  transition:
+    background 0.12s ease,
+    color 0.12s ease,
+    box-shadow 0.12s ease;
+}
+
+.guestDobCalendar__day:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.guestDobCalendar__day--outside {
+  color: var(--checkout-text-dim);
+  font-weight: 500;
+}
+
+.guestDobCalendar__day--disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.guestDobCalendar__day--disabled:hover {
+  background: transparent;
+}
+
+.guestDobCalendar__day--today:not(.guestDobCalendar__day--selected) {
+  box-shadow: inset 0 0 0 1px rgba(94, 179, 255, 0.5);
+}
+
+.guestDobCalendar__day--selected {
+  background: #0079ca;
+  color: #fff;
+}
+
+.guestDobCalendar__day--selected:hover {
+  background: #006bb3;
+}
+
+.guestDobCalendar__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.4rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--checkout-border-soft);
+}
+
+.guestDobCalendar__action {
+  padding: 0.15rem 0.25rem;
+  border: none;
+  background: transparent;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #5eb3ff;
+  cursor: pointer;
+}
+
+.guestDobCalendar__action:hover {
+  color: #8ecaff;
+  text-decoration: underline;
+}
+
+.guestDobField--invalid .guestInput {
+  border-color: rgba(255, 80, 115, 0.85);
+  box-shadow: 0 0 0 2px rgba(193, 2, 48, 0.22);
+}
+
+.guestHint {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--checkout-text-dim);
+}
+
+.guestFormAlert {
+  margin: 0 0 1.35rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(193, 2, 48, 0.45);
+  background: rgba(193, 2, 48, 0.12);
+}
+
+.guestFormAlert__title {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--checkout-text);
+}
+
+.guestFormAlert__list {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #ffb8c8;
+}
+
+.guestFieldError {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #ff9eb0;
+}
+
+.guestInput--invalid {
+  border-color: rgba(255, 80, 115, 0.85);
+  box-shadow: 0 0 0 2px rgba(193, 2, 48, 0.22);
+}
+
+.guestInput--invalid:focus {
+  border-color: var(--pacha-cherry, #c10230);
+  box-shadow: 0 0 0 3px rgba(193, 2, 48, 0.35);
+}
+
+.guestSelect--invalid {
+  border-color: rgba(255, 80, 115, 0.85);
+  box-shadow: 0 0 0 2px rgba(193, 2, 48, 0.22);
+}
+
+.guestSelect--invalid:focus {
+  border-color: var(--pacha-cherry, #c10230);
+  box-shadow: 0 0 0 3px rgba(193, 2, 48, 0.35);
+}
+
+.guestSelectWrap {
+  position: relative;
+}
+
+.guestSelectWrap--narrow {
+  flex: 0 0 auto;
+  min-width: 8.25rem;
+}
+
+.guestSelect {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.65rem 2.25rem 0.65rem 1rem;
+  border: 1px solid var(--checkout-border);
+  border-radius: 0.5rem;
+  background: var(--checkout-surface-field);
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--checkout-text);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.guestSelect option {
+  color: #031419;
+  background: #fff;
+}
+
+.guestSelectChev {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 0.65rem;
+  color: var(--checkout-text-muted);
+  line-height: 1;
+}
+
+.guestDetailsContinue {
+  width: 100%;
+  max-width: 36rem;
+  min-height: var(--pacha-btn-cta-min-height, 2.875rem);
+  margin-top: 0.5rem;
+  padding: var(--pacha-btn-cta-padding, 0.625rem 1.5rem);
+  border: none;
+  border-radius: 10rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #fff;
+  background: #0a0a0a;
+  box-shadow: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.guestDetailsContinue:hover {
+  background: #262626;
+  box-shadow: none;
+}
+
+.guestDetailsContinue:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .guestInput,
+  .guestSelect,
+  .guestPhoneField__input,
+  .guestPhoneField__codeBtn {
+    font-size: 16px;
+  }
+}

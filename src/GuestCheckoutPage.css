@@ -1,0 +1,175 @@
+.guestCheckoutPage .checkoutPage__shell {
+  max-width: 62rem;
+}
+
+@media (min-width: 960px) {
+  .guestCheckoutPage .checkoutGrid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .guestCheckoutPage .checkoutGrid__payment {
+    max-width: 34rem;
+  }
+
+  .guestCheckoutPage .checkoutGrid__summary {
+    max-width: 22rem;
+    justify-self: end;
+    width: 100%;
+    align-self: start;
+  }
+}
+
+.guestCheckoutPanel {
+  box-sizing: border-box;
+  padding: 1.5rem 1.25rem 1.25rem;
+  background: transparent;
+  color: var(--checkout-text);
+  color-scheme: dark;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.guestCheckoutForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.guestCheckoutSectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  font-family: var(--font-display, 'TT Hoves', system-ui, sans-serif);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--checkout-text);
+}
+
+.guestCheckoutSectionTitle__icon {
+  display: flex;
+  color: var(--checkout-text-muted);
+}
+
+.guestCheckoutNameRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 0.875rem;
+}
+
+@media (max-width: 480px) {
+  .guestCheckoutNameRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.guestCheckoutField {
+  margin-bottom: 0.875rem;
+}
+
+.guestCheckoutLabel {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--checkout-text);
+}
+
+/* Contact + payment fields — same visible dark inputs as verify code */
+.guestCheckoutPage .guestCheckoutInput,
+.guestCheckoutPage .guestCheckoutCardFields .guestCheckoutInput {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.625rem 0.875rem;
+  border: 1px solid var(--checkout-border, rgba(255, 255, 255, 0.38));
+  border-radius: var(--checkout-radius-control);
+  background: var(--checkout-surface-field, rgba(255, 255, 255, 0.1));
+  box-shadow: var(--checkout-field-shadow);
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--checkout-text);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.guestCheckoutPage .guestCheckoutInputWrap .guestCheckoutInput.guestCheckoutInput--withIcon {
+  padding-left: 2.875rem;
+}
+
+.guestCheckoutPage .guestCheckoutInput::placeholder {
+  color: var(--checkout-text-dim);
+}
+
+.guestCheckoutPage .guestCheckoutInput:hover {
+  border-color: var(--checkout-border-hover, rgba(255, 255, 255, 0.52));
+  background: var(--checkout-surface-field-hover, rgba(255, 255, 255, 0.14));
+}
+
+.guestCheckoutPage .guestCheckoutInput:focus {
+  outline: none;
+  border-color: var(--pacha-cherry, #c10230);
+  background: var(--checkout-surface-field-focus, rgba(255, 255, 255, 0.14));
+  box-shadow: var(--checkout-field-shadow-focus);
+}
+
+.guestCheckoutPage .guestCheckoutInput--error {
+  border-color: rgba(255, 80, 115, 0.85);
+  box-shadow:
+    0 0 0 2px rgba(193, 2, 48, 0.22),
+    var(--checkout-field-shadow);
+}
+
+.guestCheckoutPage .guestCheckoutInput--error:focus {
+  border-color: var(--pacha-cherry, #c10230);
+  box-shadow: var(--checkout-field-shadow-focus);
+}
+
+.guestCheckoutHint {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--checkout-text-dim);
+}
+
+.guestCheckoutError {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ff6b8a;
+}
+
+.guestCheckoutMarketing {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  margin: 0.25rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--checkout-text-muted);
+  cursor: pointer;
+}
+
+.guestCheckoutMarketing input {
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  accent-color: var(--pacha-cherry, #c10230);
+}
+
+.guestCheckoutDivider {
+  margin: 1.5rem 0;
+  border: none;
+  border-top: 1px solid var(--checkout-border-soft);
+}

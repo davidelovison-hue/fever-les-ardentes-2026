@@ -1,0 +1,83 @@
+.ticketingSiteFooter {
+  position: relative;
+  margin-top: auto;
+  width: 100%;
+  color: #fff;
+  background: #000;
+  overflow: hidden;
+}
+
+.ticketingSiteFooter__pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 42px,
+    rgba(255, 255, 255, 0.06) 42px,
+    rgba(255, 255, 255, 0.06) 44px
+  );
+}
+
+.ticketingSiteFooter__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2.75rem max(1.5rem, env(safe-area-inset-right, 0px))
+    calc(2.75rem + env(safe-area-inset-bottom, 0px)) max(1.5rem, env(safe-area-inset-left, 0px));
+}
+
+.ticketingSiteFooter__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .ticketingSiteFooter__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem 3rem;
+  }
+}
+
+.ticketingSiteFooter__col {
+  min-width: 0;
+}
+
+.ticketingSiteFooter__title {
+  margin: 0 0 1rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.ticketingSiteFooter__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.ticketingSiteFooter__link {
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.88);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.ticketingSiteFooter__link:hover {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}

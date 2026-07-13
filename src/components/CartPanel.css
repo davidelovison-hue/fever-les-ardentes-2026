@@ -1,0 +1,470 @@
+.cartPanel {
+  box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 0.75rem;
+  box-shadow: none;
+  padding: 1rem;
+  overflow-y: auto;
+  font-family: Montserrat, system-ui, -apple-system, sans-serif;
+}
+
+.cartPanelFloat {
+  max-height: calc(100vh - var(--festival-nav-height, 4.75rem) - 1.5rem);
+}
+
+.cartHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+.cartHeaderTitleRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.cartHeaderIcon {
+  display: flex;
+  color: #0a0a0a;
+  flex-shrink: 0;
+}
+
+.cartTitle {
+  font-size: var(--type-h5-size);
+  line-height: var(--type-h5-line-height);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+  color: #0a0a0a;
+}
+
+.cartList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ticketCard {
+  --ticket-border: #eaeaea;
+  --ticket-border-width: 1px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin-bottom: 0.75rem;
+  border: var(--ticket-border-width) solid var(--ticket-border);
+  border-radius: 0.75rem;
+  background: #fff;
+  overflow: hidden;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-line-height);
+}
+
+.ticketCard:last-child {
+  margin-bottom: 0;
+}
+
+.ticketInfo {
+  flex: 1 1 65%;
+  min-width: 0;
+  padding: 0.65rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+.ticketInfoTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.ticketName {
+  font-weight: var(--font-weight-regular);
+  color: #0a0a0a;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-line-height);
+  width: 100%;
+}
+
+.ticketVariants {
+  margin: 0;
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-line-height);
+  font-weight: var(--font-weight-regular);
+  color: #555;
+}
+
+.ticketPriceBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  margin-top: auto;
+  padding-top: 0.25rem;
+}
+
+.ticketLineTotal {
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-line-height);
+  font-weight: var(--font-weight-bold);
+  color: #0a0a0a;
+  font-variant-numeric: tabular-nums;
+}
+
+.ticketStub {
+  flex: 0 0 32%;
+  max-width: 8.75rem;
+  min-width: 6.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.35rem;
+  background: #f8fafe;
+  border-left: var(--ticket-border-width) solid var(--ticket-border);
+}
+
+.cartQtyTheme {
+  --primary: #0a1f26;
+  --entity-accent: #0079ca;
+  --chip-border: #e0e0e0;
+  flex-shrink: 0;
+}
+
+.ticketTrashBtn {
+  line-height: 0;
+  width: 1.75rem;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #e3f2fd;
+  color: #0079ca;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticketTrashBtn:hover {
+  background: #cfe8fc;
+}
+
+.cartQtyBtnMinus {
+  font: inherit;
+  font-size: var(--type-base-size);
+  line-height: 1;
+  font-weight: var(--font-weight-bold);
+  width: 1.75rem;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #e3f2fd;
+  color: #0079ca;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartQtyBtnMinus:hover {
+  background: #cfe8fc;
+}
+
+.cartQty {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: 2.25rem;
+  box-sizing: border-box;
+  padding: 0 0.2rem;
+  gap: 0.2rem;
+  border: 1px solid var(--chip-border);
+  border-radius: 9999px;
+  background: #fff;
+}
+
+.cartQtyBtnPlus {
+  font: inherit;
+  font-size: var(--type-base-size);
+  line-height: 1;
+  font-weight: var(--font-weight-bold);
+  width: 1.75rem;
+  min-width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--entity-accent);
+  color: #fff;
+}
+
+.cartQtyBtnPlus:hover {
+  background: #006bab;
+}
+
+.cartQtyValue {
+  min-width: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--type-base-size);
+  line-height: var(--type-base-line-height);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--primary);
+}
+
+.cartSummary {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.cartSummaryItems {
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-line-height);
+  font-weight: var(--font-weight-regular);
+  color: #737373;
+}
+
+.cartSummaryTotal {
+  font-size: var(--type-h5-size);
+  line-height: var(--type-h5-line-height);
+  font-weight: var(--font-weight-bold);
+  color: #0a0a0a;
+  font-variant-numeric: tabular-nums;
+}
+
+.cartCheckout {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #eee;
+}
+
+.cartCheckoutBtn {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.65rem 1rem;
+  margin: 0;
+  border: none;
+  border-radius: 9999px;
+  background: #0a0a0a;
+  color: #fff;
+  font: inherit;
+  font-size: var(--type-small-size);
+  line-height: var(--type-small-line-height);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+}
+
+.cartCheckoutBtn:hover {
+  background: #262626;
+}
+
+.cartPanelMobileWrap {
+  display: none;
+}
+
+.cartDrawerCloseBtn {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: none;
+  border-radius: 9999px;
+  background: #f2f3f3;
+  color: #0a0a0a;
+  font: inherit;
+  font-size: 1.35rem;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartDrawerCloseBtn:hover {
+  background: #e8e8e8;
+}
+
+@media (max-width: 900px) {
+  .cartPanelFloat {
+    max-height: none;
+  }
+
+  .cartMobileBar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 95;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem max(0.75rem, env(safe-area-inset-bottom));
+    background: #fff;
+    border-top: 1px solid #e8e8e8;
+    font-family: Montserrat, system-ui, -apple-system, sans-serif;
+  }
+
+  .cartMobileTrigger {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    min-width: 3.25rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #0a0a0a;
+    cursor: pointer;
+    font: inherit;
+  }
+
+  .cartMobileTriggerIconWrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cartMobileTriggerIcon {
+    display: inline-flex;
+    color: #0a0a0a;
+  }
+
+  .cartMobileTriggerIcon svg {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+
+  .cartMobileTriggerBadge {
+    position: absolute;
+    top: -0.4rem;
+    right: -0.55rem;
+    min-width: 1.125rem;
+    height: 1.125rem;
+    padding: 0 0.2rem;
+    box-sizing: border-box;
+    border-radius: 9999px;
+    background: #0079ca;
+    color: #fff;
+    font-size: 0.625rem;
+    line-height: 1;
+    font-weight: var(--font-weight-bold);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cartMobileTriggerPrice {
+    font-size: var(--type-small-size);
+    line-height: var(--type-small-line-height);
+    font-weight: 600;
+    color: #0a0a0a;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .cartMobileCheckoutPill {
+    flex: 1 1 66%;
+    max-width: 66%;
+    min-width: 0;
+    align-self: center;
+    padding: 0.85rem 1.25rem;
+    border: none;
+    border-radius: 9999px;
+    background: #0a0a0a;
+    color: #fff;
+    font: inherit;
+    font-size: var(--type-small-size);
+    line-height: var(--type-small-line-height);
+    font-weight: var(--font-weight-bold);
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  .cartMobileCheckoutPill:hover {
+    background: #262626;
+  }
+
+  .cartMobileBackdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 120;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+  }
+
+  .cartMobileDrawer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 121;
+    box-sizing: border-box;
+    max-height: min(85vh, 42rem);
+    display: flex;
+    flex-direction: column;
+    animation: cartDrawerIn 0.28s ease-out both;
+  }
+
+  @keyframes cartDrawerIn {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  .cartMobileDrawerPanel {
+    display: flex;
+    flex-direction: column;
+    max-height: inherit;
+    border-radius: 1rem 1rem 0 0;
+    border-bottom: none;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12);
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .cartMobileDrawerBody {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    margin-right: -0.25rem;
+    padding-right: 0.25rem;
+  }
+}

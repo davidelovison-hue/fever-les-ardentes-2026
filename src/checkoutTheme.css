@@ -1,0 +1,247 @@
+/* Fever light checkout theme — overrides dark Pacha checkout tokens */
+
+:root {
+  --checkout-surface-header: #ffffff;
+  --checkout-surface-field: #ffffff;
+  --checkout-surface-field-hover: #fafafa;
+  --checkout-surface-field-focus: #ffffff;
+  --checkout-surface-card: #ffffff;
+  --checkout-surface-popover: #ffffff;
+  --checkout-border: #ccd2d8;
+  --checkout-border-hover: #a7b2ba;
+  --checkout-border-soft: #eaeaea;
+  --checkout-field-shadow: 0 0 0 1px #ccd2d8;
+  --checkout-field-shadow-focus: 0 0 0 3px rgba(138, 19, 67, 0.18), 0 0 0 1px #8a1343;
+  --checkout-text: #031419;
+  --checkout-text-muted: #536b75;
+  --checkout-text-dim: #a7b2ba;
+  --checkout-accent-row: #f5e6ec;
+
+  --pacha-cherry: #8a1343;
+  --pacha-cherry-mid: #7b0f3a;
+  --pacha-cherry-deep: #6b0d32;
+  --pacha-cherry-glow: rgba(138, 19, 67, 0.2);
+  --pacha-red-mist: #f5e6ec;
+  --pacha-black: #031419;
+}
+
+.appShell {
+  background: #ffffff;
+  min-height: calc(100dvh - 4.75rem);
+}
+
+.checkoutPage,
+.guestDetailsPage,
+.guestCheckoutPage,
+.accountPage,
+.orderConfirmationPage,
+.postBookingPage {
+  background: #ffffff;
+  color: var(--checkout-text);
+  color-scheme: light;
+}
+
+.connectPage {
+  background: #ffffff;
+  color: var(--checkout-text);
+  color-scheme: light;
+}
+
+.connectPage__back {
+  color: var(--checkout-text-muted);
+}
+
+.connectPage__back:hover {
+  color: var(--checkout-text);
+}
+
+.connectPage__introTitle {
+  color: var(--checkout-text);
+}
+
+.connectPage__introLead {
+  color: var(--checkout-text-muted);
+}
+
+.connectPage__emailStrong {
+  color: var(--checkout-text);
+}
+
+.connectPage__card {
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  border: 1px solid #eaeaea;
+}
+
+.connectPage--verify {
+  background: #ffffff;
+  color: var(--checkout-text);
+}
+
+.checkoutSummaryCard {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  color: var(--checkout-text);
+}
+
+.checkoutSummaryCard__title,
+.checkoutSummaryCard__lineLabel,
+.checkoutSummaryCard__totalLabel {
+  color: var(--checkout-text);
+}
+
+.checkoutSummaryCard__lineAmount,
+.checkoutSummaryCard__totalAmount {
+  color: var(--checkout-text);
+}
+
+.checkoutSummaryCard__muted {
+  color: var(--checkout-text-muted);
+}
+
+.checkoutPage__back,
+.guestCheckoutPage__back,
+.guestDetailsPage__back {
+  color: var(--checkout-text-muted);
+}
+
+.checkoutPage__back:hover,
+.guestCheckoutPage__back:hover,
+.guestDetailsPage__back:hover {
+  color: var(--checkout-text);
+}
+
+.checkoutPage__title,
+.guestCheckoutPage__title,
+.guestDetailsPage__title,
+.postBookingPage__title,
+.orderConfirmationPage__title {
+  color: var(--checkout-text);
+}
+
+.guestInput,
+.guestCheckoutInput,
+.checkoutPaySelect,
+.guestPhoneField,
+.guestSelect,
+.profileModal__input,
+.connectPage--verify .verifyCode__cell {
+  background: #ffffff;
+  border: 1px solid var(--checkout-border);
+  color: var(--checkout-text);
+}
+
+.guestLabel,
+.checkoutPayLabel,
+.guestCheckoutLabel {
+  color: var(--checkout-text);
+}
+
+.checkoutPayBtn,
+.guestCheckoutSubmit,
+.checkoutPage__submit,
+.postBookingContinue,
+.guestDetailsContinue {
+  background: #0a0a0a;
+  box-shadow: none;
+}
+
+.checkoutPayBtn:hover,
+.guestCheckoutSubmit:hover:not(:disabled),
+.checkoutPage__submit:hover:not(:disabled),
+.postBookingContinue:hover:not(:disabled),
+.guestDetailsContinue:hover:not(:disabled) {
+  background: #262626;
+  box-shadow: none;
+}
+
+.connectPage__primaryBtn,
+.connectPage__verifySubmit {
+  background: var(--pacha-cherry);
+}
+
+.connectPage__primaryBtn:hover,
+.connectPage__verifySubmit:hover:not(:disabled) {
+  background: var(--pacha-cherry-mid);
+}
+
+.accountPage {
+  background: #ffffff;
+  color: var(--checkout-text);
+}
+
+.accountPage__name,
+.accountPage__email,
+.accountPage__phone {
+  color: var(--checkout-text);
+}
+
+.accountPage__menuBtn {
+  color: var(--checkout-text);
+  border-color: #eaeaea;
+  background: #ffffff;
+}
+
+.accountPage__menuBtn:hover {
+  background: #f5f5f5;
+}
+
+.accountPage__avatar {
+  border-color: var(--pacha-cherry);
+  background: #f5e6ec;
+  color: var(--pacha-cherry);
+}
+
+.orderConfirmationPage {
+  background: #ffffff;
+}
+
+.ticketingProfileBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 9999px;
+  background: transparent;
+  color: #171717;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.ticketingProfileBtn:hover {
+  background: #f5f5f5;
+}
+
+.ticketingProfileBtn:focus-visible {
+  outline: 2px solid #8a1343;
+  outline-offset: 2px;
+}
+
+.ticketingProfileBtn--md {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.ticketingProfileBtn--sm {
+  width: 2rem;
+  height: 2rem;
+}
+
+.ticketingProfileBtn__initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  background: #f5e6ec;
+  color: #8a1343;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.festivalNavbarProfileSlot {
+  display: flex;
+  align-items: center;
+  margin-left: 0.25rem;
+}

@@ -1,0 +1,648 @@
+/* Email / connect — dark canvas + white module card (Pacha checkout) */
+
+.connectPage {
+  position: relative;
+  z-index: 1;
+  min-height: calc(100dvh - 5.5rem);
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background: transparent;
+  color: var(--checkout-text, #fff);
+  color-scheme: dark;
+}
+
+.connectPage__main {
+  flex: 1;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.75rem max(1.25rem, env(safe-area-inset-right, 0px))
+    calc(2rem + env(safe-area-inset-bottom, 0px)) max(1.25rem, env(safe-area-inset-left, 0px));
+}
+
+.connectPage__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0 0 1rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--checkout-text-muted, rgba(255, 255, 255, 0.62));
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.connectPage__back:hover {
+  color: var(--checkout-text, #fff);
+}
+
+.connectPage__backArrow {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.connectPage__intro {
+  margin: 0 0 1.35rem;
+  padding: 0 0.25rem;
+  text-align: center;
+}
+
+.connectPage__introTitle {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display, 'TT Hoves', system-ui, sans-serif);
+  font-size: 1.375rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--checkout-text, #fff);
+}
+
+.connectPage__introLead {
+  margin: 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  font-weight: 500;
+  color: var(--checkout-text-muted, rgba(255, 255, 255, 0.62));
+}
+
+.connectPage__emailStrong {
+  font-weight: 700;
+  color: var(--checkout-text, #fff);
+}
+
+.connectPage__card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1.5rem 1.5rem 1.35rem;
+  background: #fff;
+  color: var(--pacha-black, #181a1b);
+  color-scheme: light;
+  border: 1px solid rgba(24, 26, 27, 0.12);
+  border-radius: 0.85rem;
+  box-shadow:
+    0 4px 28px rgba(0, 0, 0, 0.12),
+    0 24px 56px rgba(0, 0, 0, 0.35);
+}
+
+.connectPage__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.connectPage__optionBtn {
+  display: grid;
+  grid-template-columns: 1.35rem 1fr 1.35rem;
+  align-items: center;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.1rem;
+  margin: 0;
+  border: 1px solid rgba(24, 26, 27, 0.14);
+  border-radius: 10rem;
+  background: #fff;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--pacha-black, #181a1b);
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+}
+
+.connectPage__optionBtn:hover {
+  border-color: rgba(24, 26, 27, 0.28);
+  background: #fafafa;
+}
+
+.connectPage__optionBtn:focus-visible {
+  outline: 2px solid var(--pacha-cherry, #c10230);
+  outline-offset: 2px;
+}
+
+.connectPage__optionIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1;
+  color: var(--pacha-black, #181a1b);
+}
+
+.connectPage__optionLabel {
+  grid-column: 2;
+  text-align: center;
+}
+
+.connectPage__optionBtn--guest {
+  width: 100%;
+}
+
+.connectPage__divider {
+  display: flex;
+  align-items: center;
+  margin: 1.15rem 0;
+}
+
+.connectPage__dividerLine {
+  flex: 1;
+  height: 1px;
+  background: rgba(24, 26, 27, 0.12);
+}
+
+.connectPage__dividerRing {
+  flex-shrink: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin: 0 0.35rem;
+  border: 1px solid rgba(24, 26, 27, 0.22);
+  border-radius: 50%;
+  background: transparent;
+}
+
+.connectPage__textBack {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.35rem 0.5rem;
+  border: none;
+  background: transparent;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: rgba(24, 26, 27, 0.55);
+  text-align: center;
+  cursor: pointer;
+}
+
+.connectPage__textBack:hover {
+  color: var(--pacha-black, #181a1b);
+}
+
+.connectPage__form,
+.connectPage__verifyForm {
+  margin: 0;
+}
+
+.connectPage__verifyForm .connectPage__label {
+  margin-bottom: 0.65rem;
+}
+
+.connectPage__resend {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: rgba(24, 26, 27, 0.72);
+}
+
+.connectPage__resendBtn {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: var(--pacha-black, #181a1b);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.connectPage__resendBtn:hover {
+  color: var(--pacha-cherry, #c10230);
+}
+
+.connectPage__hint--success {
+  color: #18824c;
+  font-weight: 600;
+}
+
+.connectPage__label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--pacha-black, #181a1b);
+}
+
+.connectPage__input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(24, 26, 27, 0.18);
+  border-radius: 0.5rem;
+  background: #fafafa;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--pacha-black, #181a1b);
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.connectPage__input::placeholder {
+  color: rgba(24, 26, 27, 0.35);
+}
+
+.connectPage__input:hover {
+  border-color: rgba(24, 26, 27, 0.28);
+}
+
+.connectPage__input:focus {
+  outline: none;
+  border-color: var(--pacha-cherry, #c10230);
+  box-shadow: 0 0 0 3px rgba(193, 2, 48, 0.12);
+  background: #fff;
+}
+
+.connectPage__input--invalid {
+  border-color: rgba(193, 2, 48, 0.85);
+}
+
+.connectPage__hint {
+  margin: 0.45rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: rgba(24, 26, 27, 0.5);
+}
+
+.connectPage__error {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--pacha-cherry, #c10230);
+}
+
+.connectPage__submit {
+  width: 100%;
+  margin-top: 1.15rem;
+  min-height: var(--pacha-btn-cta-min-height, 2.875rem);
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 10rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--pacha-cherry, #c10230);
+  box-shadow: 0 2px 12px rgba(193, 2, 48, 0.35);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.1s ease;
+}
+
+.connectPage__submit:hover {
+  background: var(--pacha-cherry-mid, #bb092c);
+}
+
+.connectPage__submit:active {
+  transform: scale(0.99);
+}
+
+.connectPage__submit:focus-visible {
+  outline: 3px solid rgba(193, 2, 48, 0.45);
+  outline-offset: 2px;
+}
+
+.connectPage__legal {
+  margin: 1.35rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.6875rem;
+  line-height: 1.55;
+  color: rgba(24, 26, 27, 0.48);
+}
+
+.connectPage__legal a {
+  color: var(--pacha-cherry, #c10230);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.connectPage__legal a:hover {
+  color: var(--pacha-cherry-deep, #9a0724);
+}
+
+@media (max-width: 767px) {
+  .connectPage__input {
+    font-size: 16px;
+  }
+}
+
+/* Email verify — centered form + site footer (dark checkout theme) */
+.connectPage--verify {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - 5.5rem - env(safe-area-inset-top, 0px));
+  min-width: 0;
+  width: 100%;
+  background: transparent;
+  color: var(--checkout-text, #fff);
+  color-scheme: dark;
+}
+
+.connectPage__verifyMain {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem max(1.25rem, env(safe-area-inset-right, 0px))
+    2rem max(1.25rem, env(safe-area-inset-left, 0px));
+}
+
+.connectPage__verifyPanel {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.connectPage__verifyTitle {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display, 'TT Hoves', system-ui, sans-serif);
+  font-size: clamp(1.5rem, 4vw, 1.875rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--checkout-text, #fff);
+}
+
+.connectPage__verifyLead {
+  margin: 0 0 2rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--checkout-text-muted, rgba(255, 255, 255, 0.62));
+}
+
+.connectPage__verifyEmail {
+  font-weight: 700;
+  color: var(--checkout-text, #fff);
+}
+
+.connectPage__verifyForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+}
+
+.connectPage__verifyLabel {
+  display: block;
+  width: 100%;
+  margin: 0 0 0.85rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--checkout-text, #fff);
+}
+
+.connectPage__verifyError {
+  width: 100%;
+  margin: 0.5rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--pacha-cherry, #c10230);
+}
+
+.connectPage__verifyResendNote {
+  margin: 0.65rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #18824c;
+}
+
+.connectPage__verifyResend {
+  margin: 1.35rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--checkout-text-muted, rgba(255, 255, 255, 0.62));
+}
+
+.connectPage__verifyResendBtn {
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-weight: 600;
+  color: var(--checkout-text, #fff);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.connectPage__verifyResendBtn:hover {
+  color: var(--pacha-cherry, #c10230);
+}
+
+.connectPage--verify .verifyCode {
+  width: 100%;
+}
+
+.connectPage--verify .verifyCode__cell {
+  border: 1px solid var(--checkout-border, rgba(255, 255, 255, 0.38));
+  background: var(--checkout-surface-field, rgba(255, 255, 255, 0.1));
+  color: var(--checkout-text, #fff);
+}
+
+.connectPage--verify .verifyCode--invalid .verifyCode__cell {
+  border-color: var(--checkout-border, rgba(255, 255, 255, 0.32));
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.connectPage--verify .verifyCode--invalid .verifyCode__cell--error {
+  border-color: var(--pacha-cherry, #c10230);
+}
+
+/* Continue with email — Fever-style centered form on dark canvas */
+.connectPage--emailStep {
+  min-height: calc(100dvh - 5.5rem - env(safe-area-inset-top, 0px));
+}
+
+.connectPage__main--email {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 26rem;
+  padding-top: clamp(2.5rem, 14vh, 5.5rem);
+  padding-bottom: 2rem;
+}
+
+.connectPage__emailIntro {
+  margin: 0 0 1.75rem;
+  text-align: left;
+}
+
+.connectPage__emailTitle {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-display, 'TT Hoves', system-ui, sans-serif);
+  font-size: clamp(1.375rem, 4vw, 1.625rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--checkout-text, #fff);
+}
+
+.connectPage__emailLead {
+  margin: 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--checkout-text-muted, rgba(255, 255, 255, 0.62));
+}
+
+.connectPage__emailForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+}
+
+.connectPage__emailLabel {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--checkout-text, #fff);
+}
+
+.connectPage__emailInput {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 2.85rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--checkout-border, rgba(255, 255, 255, 0.38));
+  border-radius: 0.5rem;
+  background: var(--checkout-surface-field, rgba(255, 255, 255, 0.1));
+  box-shadow: var(--checkout-field-shadow);
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--checkout-text, #fff);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.connectPage__emailInput::placeholder {
+  color: var(--checkout-text-dim, rgba(255, 255, 255, 0.45));
+}
+
+.connectPage__emailInput:hover {
+  border-color: var(--checkout-border-hover, rgba(255, 255, 255, 0.52));
+  background: var(--checkout-surface-field-hover, rgba(255, 255, 255, 0.14));
+}
+
+.connectPage__emailInput:focus {
+  outline: none;
+  border-color: var(--pacha-cherry, #c10230);
+  background: var(--checkout-surface-field-focus, rgba(255, 255, 255, 0.14));
+  box-shadow: var(--checkout-field-shadow-focus);
+}
+
+.connectPage__emailInput--invalid {
+  border-color: var(--pacha-cherry, #c10230);
+}
+
+.connectPage__emailError {
+  margin: 0.45rem 0 0;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--pacha-cherry, #c10230);
+}
+
+.connectPage__emailSubmit {
+  width: 100%;
+  margin-top: 1.35rem;
+  min-height: var(--pacha-btn-cta-min-height, 2.875rem);
+  padding: 0.625rem 1.25rem;
+  border: none;
+  border-radius: 10rem;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--pacha-cherry, #c10230);
+  box-shadow: 0 2px 12px rgba(193, 2, 48, 0.35);
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    opacity 0.15s ease,
+    transform 0.1s ease;
+}
+
+.connectPage__emailSubmit:hover:not(:disabled) {
+  background: var(--pacha-cherry-mid, #bb092c);
+}
+
+.connectPage__emailSubmit:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.connectPage__emailSubmit:focus-visible {
+  outline: 3px solid rgba(193, 2, 48, 0.45);
+  outline-offset: 2px;
+}
+
+.connectPage__emailSubmit--disabled,
+.connectPage__emailSubmit:disabled {
+  background: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.45);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.connectPage__emailBack {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.35rem 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-ui, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--checkout-text-muted, rgba(255, 255, 255, 0.62));
+  text-align: center;
+  cursor: pointer;
+}
+
+.connectPage__emailBack:hover {
+  color: var(--checkout-text, #fff);
+}
+
+@media (max-width: 767px) {
+  .connectPage__emailInput {
+    font-size: 16px;
+  }
+}

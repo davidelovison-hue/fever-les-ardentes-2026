@@ -1,0 +1,321 @@
+.planPage {
+  --festival-nav-height: calc(0.5rem + 2rem + 0.5rem);
+  --sticky-tabs-height: 2.75rem;
+  --tab-content-scroll-gap: 0.75rem;
+  min-height: 100vh;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .planPage {
+    --festival-nav-height: calc(0.45rem + 2rem + 0.45rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .planPage {
+    --festival-nav-height: calc(0.5rem + 2.5rem + 0.5rem);
+  }
+}
+
+.planStickyNav {
+  order: 1;
+  flex: 0 0 auto;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #000;
+  border-bottom: none;
+  box-sizing: border-box;
+}
+
+.planHeroSlot {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.planDesktopShell {
+  order: 3;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.planHeroSlot {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.eventTitle {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 1.5rem 1rem 1rem;
+  font-size: var(--type-h2-size);
+  line-height: var(--type-h2-line-height);
+  font-weight: var(--font-weight-bold);
+  color: #0a0a0a;
+  letter-spacing: -0.02em;
+}
+
+.planTabsScrollAnchor {
+  flex: 0 0 auto;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.planTabsSlot {
+  flex: 0 0 auto;
+  position: sticky;
+  top: var(--festival-nav-height);
+  z-index: 110;
+  isolation: isolate;
+  background: #f6f7f7;
+  min-width: 0;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 0;
+  align-self: stretch;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.planTabsSlot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #f6f7f7;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.planMainShell {
+  flex: 1 1 auto;
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 1rem 2.5rem;
+}
+
+.planMainColumn {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  container-type: inline-size;
+  container-name: plan-main;
+  --plan-card-width: min(340px, calc((100% - 1rem) / 2));
+  --plan-card-min-height: 26.5rem;
+}
+
+@supports (container-type: inline-size) {
+  .planMainColumn {
+    --plan-card-width: min(
+      340px,
+      max(11rem, calc((100cqi - 2 * 0.75rem) / 2.5)),
+      calc((100cqi - 0.75rem) / 2)
+    );
+  }
+}
+
+.planContentColumn {
+  min-width: 0;
+  width: 100%;
+  min-height: calc(
+    100vh - var(--festival-nav-height) - var(--sticky-tabs-height) - 10rem
+  );
+}
+
+.categorySection {
+  margin-bottom: 2.5rem;
+  scroll-margin-top: calc(
+    var(--festival-nav-height) + var(--sticky-tabs-height) + var(--tab-content-scroll-gap, 0.75rem)
+  );
+}
+
+.placeholderSection {
+  padding: 2rem 0;
+  color: #536b75;
+  font-size: var(--type-base-size);
+  line-height: var(--type-base-line-height);
+}
+
+@media (min-width: 901px) {
+  .planDesktopShell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 340px);
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      "hero hero"
+      "planTitle planTitle"
+      "tabs tabs"
+      "main cart";
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    column-gap: 1.5rem;
+    align-items: start;
+  }
+
+  .planHeroSlot--mediaHero {
+    grid-area: hero;
+    grid-column: 1 / -1;
+    order: 0;
+    width: 100%;
+    padding: 0.75rem 0 0;
+    margin-bottom: 1rem;
+  }
+
+  .planHeroSlot--mediaHero .festivalGalleryBand {
+    max-width: none;
+    margin: 0;
+    width: 100%;
+  }
+
+  .eventTitle {
+    grid-area: planTitle;
+    padding: 1.5rem 0 1rem;
+  }
+
+  .planTabsScrollAnchor {
+    grid-area: tabs;
+    align-self: start;
+  }
+
+  .planTabsSlot {
+    grid-area: tabs;
+    grid-column: 1 / -1;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    position: sticky;
+  }
+
+  .planTabsSlot .stickyTabsBar,
+  .planTabsSlot .tabsNav,
+  .planTabsSlot .tabsBarInner,
+  .planTabsSlot .tabsScroll {
+    background: #f6f7f7;
+  }
+
+  .planTabsSlot .tabsBarInner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .planMainShell {
+    grid-area: main;
+    max-width: none;
+    margin: 0;
+    padding: 28px 0 2.5rem;
+  }
+
+  .planCartColumn {
+    grid-area: cart;
+    grid-row: 4 / -1;
+    position: sticky;
+    top: calc(var(--festival-nav-height) + var(--sticky-tabs-height));
+    padding-top: 28px;
+    z-index: 89;
+    align-self: start;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    box-sizing: border-box;
+  }
+
+  .planCartColumn--placeholder {
+    visibility: hidden;
+    pointer-events: none;
+    min-height: 12rem;
+  }
+
+  .cartPanelReveal {
+    animation: cartPanelIn 0.38s ease-out both;
+  }
+
+  @keyframes cartPanelIn {
+    from {
+      opacity: 0;
+      transform: translateX(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .planMainColumn {
+    --plan-card-width: 100%;
+  }
+
+  /* Desktop sidebar cart — not mounted on mobile; keep rule as safety net */
+  .planCartColumn {
+    display: none !important;
+  }
+
+  .planTabsSlot {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  .planTabsSlot .stickyTabsBar,
+  .planTabsSlot .tabsNav,
+  .planTabsSlot .tabsBarInner,
+  .planTabsSlot .tabsScroll,
+  .planTabsSlot .tabsLink {
+    background: #f6f7f7;
+  }
+
+  .eventTitle {
+    padding: 1.25rem 1rem 0.85rem;
+  }
+
+  .planTabsSlot .tabsBarInner {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .planTabsSlot .tabsItem:first-child .tabsLink {
+    padding-left: 0;
+  }
+
+  .planMainShell {
+    padding: 1.25rem 1rem calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .planDesktopShell .planHeroSlot--mediaHero {
+    order: -1;
+  }
+
+  .categorySection {
+    margin-bottom: 1.75rem;
+  }
+}
