@@ -45,8 +45,8 @@ export const GALLERY_IMAGES = [
   },
 ];
 
-export const FESTIVAL_HERO_VIDEO =
-  'https://pacha-production.s3.eu-west-1.amazonaws.com/media/pacha_website__v01+(1080p)+(3).mp4';
+// Prototype asset (replace with an official Les Ardentes video if available).
+export const FESTIVAL_HERO_VIDEO = 'https://cdn.coverr.co/videos/coverr-crowd-enjoying-a-concert-1576/1080p.mp4';
 
 export const FESTIVAL_MEDIA_HERO = {
   video: FESTIVAL_HERO_VIDEO,

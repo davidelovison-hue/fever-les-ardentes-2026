@@ -5,9 +5,9 @@ import { formatPrice } from '../lib/formatPrice'
 import '../CheckoutPage.css'
 import './CheckoutPaymentMethods.css'
 
-const PACHA_TERMS_URL = 'https://pacha.com/terms-and-conditions'
-const PACHA_PRIVACY_URL = 'https://pacha.com/privacy-policy'
-const PACHA_TERMS_OF_USE_URL = 'https://pacha.com/terms-of-use'
+const TERMS_URL = 'https://feverup.com/legal/terms'
+const PRIVACY_URL = 'https://feverup.com/legal/privacy'
+const TERMS_OF_USE_URL = 'https://feverup.com/legal/terms'
 
 type PaymentMethodId = 'card' | 'paypal' | 'google_pay' | 'apple_pay' | 'klarna'
 
@@ -261,7 +261,7 @@ export function CheckoutPaymentMethods({
             <span className="checkoutLegalAccept__text">
               By continuing you accept the{' '}
               <a
-                href={PACHA_TERMS_URL}
+                href={TERMS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={stopLabelBubble}
@@ -270,14 +270,13 @@ export function CheckoutPaymentMethods({
               </a>{' '}
               and the{' '}
               <a
-                href={PACHA_PRIVACY_URL}
+                href={PRIVACY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={stopLabelBubble}
               >
                 Privacy Policy
-              </a>{' '}
-              of Pacha.
+              </a>
             </span>
           </label>
 
@@ -291,7 +290,7 @@ export function CheckoutPaymentMethods({
       >
         <a
           className="checkoutLegalLinks__item"
-          href={PACHA_TERMS_OF_USE_URL}
+          href={TERMS_OF_USE_URL}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -300,7 +299,7 @@ export function CheckoutPaymentMethods({
         </a>
         <a
           className="checkoutLegalLinks__item"
-          href={PACHA_PRIVACY_URL}
+          href={PRIVACY_URL}
           target="_blank"
           rel="noopener noreferrer"
         >

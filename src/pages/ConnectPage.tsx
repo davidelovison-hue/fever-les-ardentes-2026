@@ -381,19 +381,15 @@ export function ConnectPage() {
               </button>
 
           <p className="connectPage__legal">
-              By continuing you agree to Pacha&apos;s{' '}
-              <a href="https://feverup.com/legal/terms" target="_blank" rel="noopener noreferrer">
-                legal notice
-              </a>
-              ,{' '}
-              <a href="https://feverup.com/legal/privacy" target="_blank" rel="noopener noreferrer">
-                privacy policy
-              </a>{' '}
-              and{' '}
-              <a href="https://feverup.com/legal/terms" target="_blank" rel="noopener noreferrer">
-                terms of use
-              </a>
-              .
+            By continuing you accept the{' '}
+            <a href="https://feverup.com/legal/terms" target="_blank" rel="noopener noreferrer">
+              Terms and Conditions
+            </a>{' '}
+            and the{' '}
+            <a href="https://feverup.com/legal/privacy" target="_blank" rel="noopener noreferrer">
+              Privacy Policy
+            </a>
+            .
           </p>
         </div>
       </main>

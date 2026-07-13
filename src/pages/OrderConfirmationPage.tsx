@@ -162,15 +162,15 @@ export function OrderConfirmationPage() {
             </p>
             <p className="orderConfirmFooter__legal">
               Ticket and purchase terms are available on{' '}
-              <a href="https://pacha.com" target="_blank" rel="noopener noreferrer">
-                pacha.com
+              <a href="https://feverup.com/legal/terms" target="_blank" rel="noopener noreferrer">
+                feverup.com
               </a>
               .
             </p>
             <p className="orderConfirmFooter__help">
               Need help?{' '}
-              <a href="https://pacha.com/contact-us" target="_blank" rel="noopener noreferrer">
-                Contact Pacha customer service
+              <a href="https://feverup.com/contact" target="_blank" rel="noopener noreferrer">
+                Contact customer support
               </a>
               .
             </p>

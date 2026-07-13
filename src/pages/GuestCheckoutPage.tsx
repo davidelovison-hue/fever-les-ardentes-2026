@@ -263,7 +263,7 @@ export function GuestCheckoutPage() {
                   onChange={(e) => update('marketing', e.target.checked)}
                 />
                 <span>
-                  I agree to receive news, recommendations and the privacy policy from Pacha and its partners.
+                  I agree to receive news and recommendations from Les Ardentes and its partners.
                 </span>
               </label>
 
