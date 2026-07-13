@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FESTIVAL_EVENT_ID, FESTIVAL_LOGO_SRC } from '../lib/festivalEvent';
 import { TicketingProfileButton } from './TicketingProfileButton';
 import './FestivalNavbar.css';
@@ -25,6 +26,7 @@ function MenuIcon() {
 }
 
 export function FestivalNavbar({ profileSlot }: FestivalNavbarProps) {
+  const navigate = useNavigate();
   const profileControl =
     profileSlot ?? (
       <TicketingProfileButton eventId={FESTIVAL_EVENT_ID} size="md" className="festivalNavbarProfileSlot" />
@@ -34,7 +36,12 @@ export function FestivalNavbar({ profileSlot }: FestivalNavbarProps) {
     <header className="festivalNavbar">
       <div className="festivalNavbarInner">
         <div className="leftCluster">
-          <a className="logo" href="/" aria-label="Les Ardentes — home">
+          <button
+            type="button"
+            className="logo logoButton"
+            aria-label="Les Ardentes — overview"
+            onClick={() => navigate('/#overview')}
+          >
             <img
               className="logoImg"
               src={FESTIVAL_LOGO_SRC}
@@ -43,7 +50,7 @@ export function FestivalNavbar({ profileSlot }: FestivalNavbarProps) {
               height={58}
               decoding="async"
             />
-          </a>
+          </button>
         </div>
 
         <div className="actionsDesktop">
