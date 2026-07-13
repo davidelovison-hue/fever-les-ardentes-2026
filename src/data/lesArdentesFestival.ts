@@ -45,8 +45,8 @@ export const GALLERY_IMAGES = [
   },
 ];
 
-// Prototype asset (replace with an official Les Ardentes video if available).
-export const FESTIVAL_HERO_VIDEO = 'https://cdn.coverr.co/videos/coverr-crowd-enjoying-a-concert-1576/1080p.mp4';
+// Prototype asset (local to avoid CORS/autoplay issues on Pages).
+export const FESTIVAL_HERO_VIDEO = `${BASE}hero-video.mp4`;
 
 export const FESTIVAL_MEDIA_HERO = {
   video: FESTIVAL_HERO_VIDEO,
