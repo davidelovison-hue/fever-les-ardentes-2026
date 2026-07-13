@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useState } from 'react';
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { formatCartSelections, useCart, type CartItem } from '../lib/cartContext';
 import { buildCheckoutFromCart } from '../lib/buildCheckoutFromCart';
@@ -49,9 +49,25 @@ export function CartPanel({ mode }: CartPanelProps) {
   const cartTitleId = useId();
   const { items, setQuantity, removeItem, totalItems, totalPrice } = useCart();
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+  const cartBodyRef = useRef<HTMLDivElement | null>(null);
+  const [cartHasOverflow, setCartHasOverflow] = useState(false);
+  const [cartIsAtBottom, setCartIsAtBottom] = useState(true);
 
   const closeMobileDrawer = useCallback(() => {
     setIsMobileDrawerOpen(false);
+  }, []);
+
+  const updateScrollHint = useCallback(() => {
+    const el = cartBodyRef.current;
+    if (!el) return;
+    const overflow = el.scrollHeight - el.clientHeight > 4;
+    setCartHasOverflow(overflow);
+    if (!overflow) {
+      setCartIsAtBottom(true);
+      return;
+    }
+    const remaining = el.scrollHeight - el.clientHeight - el.scrollTop;
+    setCartIsAtBottom(remaining <= 4);
   }, []);
 
   useEffect(() => {
@@ -71,6 +87,18 @@ export function CartPanel({ mode }: CartPanelProps) {
     };
   }, [closeMobileDrawer, isMobileDrawerOpen, mode]);
 
+  useEffect(() => {
+    updateScrollHint();
+  }, [items.length, mode, isMobileDrawerOpen, updateScrollHint]);
+
+  useEffect(() => {
+    const el = cartBodyRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(() => updateScrollHint());
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [updateScrollHint]);
+
   const goToCheckout = () => {
     const returnHash = window.location.hash.replace(/^#/, '') || 'tickets';
     const payload = buildCheckoutFromCart(items, returnHash);
@@ -83,13 +111,15 @@ export function CartPanel({ mode }: CartPanelProps) {
     return null;
   }
 
+  const showScrollHint = useMemo(() => cartHasOverflow && !cartIsAtBottom, [cartHasOverflow, cartIsAtBottom]);
+
   const cartList = (
     <ul className="cartList">
       {items.map((item) => {
         const variantText = formatCartSelections(item.selections);
 
         return (
-          <li key={item.entityId} className="ticketCard">
+          <li key={item.key} className="ticketCard">
             <div className="ticketInfo">
               <div className="ticketInfoTop">
                 <div className="ticketName">{item.name}</div>
@@ -117,7 +147,7 @@ export function CartPanel({ mode }: CartPanelProps) {
                     type="button"
                     className="ticketTrashBtn"
                     aria-label={`Remove ${item.name}`}
-                    onClick={() => removeItem(item.entityId)}
+                    onClick={() => removeItem(item.entityId, item.selections)}
                   >
                     <TrashIcon />
                   </button>
@@ -189,9 +219,19 @@ export function CartPanel({ mode }: CartPanelProps) {
         <div className="cartPanelReveal">
           <div className="cartPanel cartPanelFloat" role="complementary">
             {cartHeader()}
-            {cartList}
-            {cartSummary}
-            <div className="cartCheckout">{checkoutButton}</div>
+            <div
+              ref={cartBodyRef}
+              className={showScrollHint ? 'cartBody cartBodyHint' : 'cartBody'}
+              aria-label="Cart items"
+              onScroll={updateScrollHint}
+            >
+              {cartList}
+            </div>
+            <div className="cartFooter" aria-label="Cart summary and checkout">
+              {showScrollHint ? <div className="cartScrollHint">Scroll to see more tickets</div> : null}
+              {cartSummary}
+              <div className="cartCheckout">{checkoutButton}</div>
+            </div>
           </div>
         </div>
         <AddToCartToast variant="desktop" />
@@ -241,9 +281,20 @@ export function CartPanel({ mode }: CartPanelProps) {
           >
             <div className="cartMobileDrawerPanel cartPanel">
               {cartHeader(true)}
-              <div className="cartMobileDrawerBody">{cartList}</div>
-              {cartSummary}
-              <div className="cartCheckout">{checkoutButton}</div>
+              <div className="cartMobileDrawerBody cartBody">
+                <div
+                  ref={cartBodyRef}
+                  className={showScrollHint ? 'cartMobileDrawerScroll cartBodyHint' : 'cartMobileDrawerScroll'}
+                  onScroll={updateScrollHint}
+                >
+                  {cartList}
+                </div>
+              </div>
+              <div className="cartFooter">
+                {showScrollHint ? <div className="cartScrollHint">Scroll to see more tickets</div> : null}
+                {cartSummary}
+                <div className="cartCheckout">{checkoutButton}</div>
+              </div>
             </div>
           </div>
         </>

@@ -235,8 +235,8 @@
     grid-area: cart;
     grid-row: 4 / -1;
     position: sticky;
-    top: calc(var(--festival-nav-height) + var(--sticky-tabs-height));
-    padding-top: 28px;
+    top: calc(var(--festival-nav-height) + var(--sticky-tabs-height) + 0.75rem);
+    padding-top: 0;
     z-index: 89;
     align-self: start;
     width: 100%;

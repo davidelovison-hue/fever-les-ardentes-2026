@@ -402,12 +402,17 @@
   overflow-x: auto;
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  scrollbar-width: thin;
   padding-bottom: 0.125rem;
 }
 
 .pillRow::-webkit-scrollbar {
-  display: none;
+  height: 4px;
+}
+
+.pillRow::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 9999px;
 }
 
 .pillRowStacked {

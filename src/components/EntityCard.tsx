@@ -24,7 +24,7 @@ function listingTagClass(tone: ReturnType<typeof getListingTagTone>) {
 }
 
 export function EntityCard({ entity }: EntityCardProps) {
-  const { getQuantity, setQuantity: setCartQuantity, setSelections } = useCart();
+  const { getQuantity, setQuantity: setCartQuantity } = useCart();
   const images = getEntityImages(entity.id);
   const hideImage = entity.id.startsWith('park-');
   const hasImages = !hideImage && images.length > 0;
@@ -44,7 +44,6 @@ export function EntityCard({ entity }: EntityCardProps) {
   const showListingInTitle =
     !!entity.listingTag?.trim() && showTitleTagArea && !showImageTag && !entity.id.startsWith('ticket-');
 
-  const quantity = getQuantity(entity.id);
   const [imageIndex, setImageIndex] = useState(0);
   const [selectedByAxis, setSelectedByAxis] = useState<Record<string, string>>(() =>
     getDefaultSelections(entity),
@@ -57,11 +56,7 @@ export function EntityCard({ entity }: EntityCardProps) {
     setSelectedByAxis(getDefaultSelections(entity));
   }, [entity.id]);
 
-  useEffect(() => {
-    if (quantity > 0) {
-      setSelections(entity.id, selectedByAxis);
-    }
-  }, [entity.id, quantity, selectedByAxis, setSelections]);
+  const quantity = getQuantity(entity.id, selectedByAxis);
 
   const syncImageIndex = useCallback(() => {
     const strip = stripRef.current;
@@ -88,11 +83,7 @@ export function EntityCard({ entity }: EntityCardProps) {
 
   const selectAxis = (axisId: string, value: string) => {
     setSelectedByAxis((current) => {
-      const next = { ...current, [axisId]: value };
-      if (quantity > 0) {
-        setSelections(entity.id, next);
-      }
-      return next;
+      return { ...current, [axisId]: value };
     });
   };
 

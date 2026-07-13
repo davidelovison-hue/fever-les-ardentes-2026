@@ -19,73 +19,75 @@ function getTabFromHash() {
   return 'overview';
 }
 
-const TAB_SCROLL_TOLERANCE_PX = 8;
-const TAB_SCROLL_SETTLE_MS = 80;
+const TAB_SCROLL_GAP_PX = 12;
+const STICKY_CHECK_TOLERANCE_PX = 2;
 
-function parseCssLengthPx(raw: string, rootFontSize: number) {
-  const value = raw.trim();
-  if (!value) return 0;
-  if (value.endsWith('rem')) return parseFloat(value) * rootFontSize;
-  if (value.endsWith('px')) return parseFloat(value);
-  return parseFloat(value) || 0;
+function getStickyOffsetPx() {
+  const nav = document.querySelector<HTMLElement>('.planStickyNav');
+  const tabs = document.querySelector<HTMLElement>('.planTabsSlot');
+  const navH = nav?.getBoundingClientRect().height ?? 0;
+  const tabsH = tabs?.getBoundingClientRect().height ?? 0;
+  return navH + tabsH + TAB_SCROLL_GAP_PX;
 }
 
-/** Scroll so sticky tabs sit below the nav and active category content is aligned. */
-function getActiveTabScrollTarget(tabId: string) {
-  const section = document.getElementById(tabId);
+function isTabsBarStickyNow() {
+  const nav = document.querySelector<HTMLElement>('.planStickyNav');
+  const tabs = document.querySelector<HTMLElement>('.planTabsSlot');
   const anchor = document.querySelector<HTMLElement>('.planTabsScrollAnchor');
-  const planPage = section?.closest('.planPage') ?? anchor?.closest('.planPage') ?? null;
-  if (!planPage) return null;
+  if (!tabs) return false;
+  if (!anchor) return false;
 
-  const styles = getComputedStyle(planPage);
-  const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-  const navHeight = parseCssLengthPx(styles.getPropertyValue('--festival-nav-height'), rootFontSize);
-  const tabsHeight = parseCssLengthPx(styles.getPropertyValue('--sticky-tabs-height'), rootFontSize);
-  const gap = parseCssLengthPx(styles.getPropertyValue('--tab-content-scroll-gap'), rootFontSize);
-  const stickyOffset = navHeight + tabsHeight + gap;
-
-  const targets: number[] = [];
-
-  if (section) {
-    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-    targets.push(Math.max(0, sectionTop - stickyOffset));
-  }
-
-  if (anchor) {
-    const anchorTop = anchor.getBoundingClientRect().top + window.scrollY;
-    targets.push(Math.max(0, anchorTop - navHeight));
-  }
-
-  if (targets.length === 0) return null;
-  return Math.min(...targets);
+  const navH = nav?.getBoundingClientRect().height ?? 0;
+  // Sticky engages once we've scrolled past the anchor point (adjusted by nav height).
+  const anchorDocTop = anchor.getBoundingClientRect().top + window.scrollY;
+  return window.scrollY >= anchorDocTop - navH - STICKY_CHECK_TOLERANCE_PX;
 }
 
-function scrollToActiveTab(tabId: string) {
-  const targetTop = getActiveTabScrollTarget(tabId);
-  if (targetTop === null) return;
-  if (Math.abs(window.scrollY - targetTop) <= TAB_SCROLL_TOLERANCE_PX) return;
+function getScrollTargetEl(tabId: string) {
+  const section = document.getElementById(tabId);
+  if (!section) return null;
+  // Prefer the filters row if it exists; otherwise fall back to section top.
+  const chips = section.querySelector<HTMLElement>('.groupChipsWrap');
+  if (chips) return chips;
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  window.scrollTo({
-    top: targetTop,
-    behavior: prefersReducedMotion ? 'auto' : 'smooth',
-  });
+  // Tabs without filters (e.g. Travel & Parking) should align to the first visible
+  // content block/title, not the section wrapper, to avoid awkward whitespace.
+  const firstTitle = section.querySelector<HTMLElement>('.groupCarouselTitle');
+  if (firstTitle) return firstTitle;
+  const firstBlock = section.querySelector<HTMLElement>('.groupBlock');
+  return firstBlock ?? section;
 }
 
-function scheduleActiveTabScroll(tabId: string) {
-  let settleTimer: ReturnType<typeof setTimeout> | undefined;
+function scheduleActiveTabScroll(tabId: string, isMobile: boolean) {
+  let cancelled = false;
+  let rafId = 0;
 
-  const run = () => scrollToActiveTab(tabId);
+  const runOnce = () => {
+    if (isMobile && tabId === 'overview') {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      return;
+    }
+    if (!isTabsBarStickyNow()) return;
 
-  requestAnimationFrame(() => {
+    const targetEl = getScrollTargetEl(tabId);
+    if (!targetEl) return;
+
+    // Deterministic and robust: scroll the element into view, then compensate for
+    // sticky navbar + tabs so the target isn't hidden underneath.
+    targetEl.scrollIntoView({ block: 'start', behavior: 'auto' });
+    const offset = getStickyOffsetPx();
+    if (offset > 0) window.scrollBy({ top: -offset, left: 0, behavior: 'auto' });
+  };
+
+  rafId = requestAnimationFrame(() => {
     requestAnimationFrame(() => {
-      run();
-      settleTimer = window.setTimeout(run, TAB_SCROLL_SETTLE_MS);
+      if (!cancelled) runOnce();
     });
   });
 
   return () => {
-    if (settleTimer !== undefined) window.clearTimeout(settleTimer);
+    cancelled = true;
+    if (rafId) cancelAnimationFrame(rafId);
   };
 }
 
@@ -102,17 +104,17 @@ export function PlanPage() {
     (tabId: string) => {
       if (tabId === activeTab) return;
       setActiveTab(tabId);
-      window.location.hash = tabId;
+      // Avoid native hash scrolling (which is jarring with sticky UI).
+      // pushState updates the URL without triggering an automatic scroll.
+      window.history.pushState(null, '', `#${tabId}`);
     },
     [activeTab],
   );
 
   useEffect(() => {
-    const onHashChange = () => {
-      setActiveTab(getTabFromHash());
-    };
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
+    const onPopState = () => setActiveTab(getTabFromHash());
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
   }, []);
 
   useEffect(() => {
@@ -123,8 +125,8 @@ export function PlanPage() {
       }
     }
 
-    return scheduleActiveTabScroll(activeTab);
-  }, [activeTab]);
+    return scheduleActiveTabScroll(activeTab, isMobile);
+  }, [activeTab, isMobile]);
 
   return (
     <div className="planPage">

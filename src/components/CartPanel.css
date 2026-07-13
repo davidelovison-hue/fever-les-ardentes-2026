@@ -6,12 +6,16 @@
   border-radius: 0.75rem;
   box-shadow: none;
   padding: 1rem;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   font-family: Montserrat, system-ui, -apple-system, sans-serif;
 }
 
 .cartPanelFloat {
-  max-height: calc(100vh - var(--festival-nav-height, 4.75rem) - 1.5rem);
+  max-height: calc(
+    100vh - var(--festival-nav-height, 4.75rem) - var(--sticky-tabs-height, 2.75rem) - 2rem
+  );
 }
 
 .cartHeader {
@@ -49,6 +53,65 @@
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.cartBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+  margin-right: -0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(10, 10, 10, 0.28) transparent;
+}
+
+.cartBody::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cartBody::-webkit-scrollbar-thumb {
+  background: rgba(10, 10, 10, 0.22);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.cartBodyHint {
+  position: relative;
+}
+
+.cartBodyHint::after {
+  content: '';
+  position: sticky;
+  display: block;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2.25rem;
+  margin-top: -2.25rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  pointer-events: none;
+}
+
+.cartMobileDrawerScroll {
+  overflow-y: auto;
+  min-height: 0;
+  max-height: 100%;
+}
+
+.cartScrollHint {
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-line-height);
+  font-weight: 600;
+  color: #536b75;
+  text-align: center;
+  padding: 0.25rem 0 0.5rem;
+}
+
+.cartFooter {
+  flex: 0 0 auto;
+  background: #fff;
+  padding-top: 0.75rem;
 }
 
 .ticketCard {
@@ -259,8 +322,6 @@
 
 .cartCheckout {
   margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid #eee;
 }
 
 .cartCheckoutBtn {

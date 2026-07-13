@@ -4,6 +4,7 @@ import type { PlanEntity } from '../data/planCatalog';
 export type CartSelection = Record<string, string>;
 
 export type CartItem = {
+  key: string;
   entityId: string;
   name: string;
   price: number;
@@ -13,15 +14,13 @@ export type CartItem = {
 
 type CartContextValue = {
   items: CartItem[];
-  getQuantity: (entityId: string) => number;
-  getSelections: (entityId: string) => CartSelection | undefined;
+  getQuantity: (entityId: string, selections?: CartSelection) => number;
   setQuantity: (
     entity: PlanEntity,
     quantity: number,
     selections: CartSelection,
   ) => void;
-  setSelections: (entityId: string, selections: CartSelection) => void;
-  removeItem: (entityId: string) => void;
+  removeItem: (entityId: string, selections: CartSelection) => void;
   totalItems: number;
   totalPrice: number;
 };
@@ -43,29 +42,41 @@ export function formatCartSelections(selections: CartSelection): string {
     .join(' · ');
 }
 
+function selectionKey(selections: CartSelection): string {
+  const entries = Object.entries(selections)
+    .filter(([, value]) => value.trim())
+    .sort(([a], [b]) => a.localeCompare(b));
+  return entries.map(([k, v]) => `${k}=${v}`).join('|');
+}
+
+function cartItemKey(entityId: string, selections: CartSelection): string {
+  return `${entityId}::${selectionKey(selections)}`;
+}
+
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
 
   const getQuantity = useCallback(
-    (entityId: string) => items.find((item) => item.entityId === entityId)?.quantity ?? 0,
-    [items],
-  );
-
-  const getSelections = useCallback(
-    (entityId: string) => items.find((item) => item.entityId === entityId)?.selections,
+    (entityId: string, selections?: CartSelection) => {
+      if (!selections) return items.find((item) => item.entityId === entityId)?.quantity ?? 0;
+      const key = cartItemKey(entityId, selections);
+      return items.find((item) => item.key === key)?.quantity ?? 0;
+    },
     [items],
   );
 
   const setQuantity = useCallback(
     (entity: PlanEntity, quantity: number, selections: CartSelection) => {
       setItems((current) => {
-        const existingIndex = current.findIndex((item) => item.entityId === entity.id);
+        const key = cartItemKey(entity.id, selections);
+        const existingIndex = current.findIndex((item) => item.key === key);
         if (quantity <= 0) {
           if (existingIndex === -1) return current;
-          return current.filter((item) => item.entityId !== entity.id);
+          return current.filter((item) => item.key !== key);
         }
 
         const nextItem: CartItem = {
+          key,
           entityId: entity.id,
           name: entity.name,
           price: entity.price,
@@ -82,16 +93,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     [],
   );
 
-  const setSelections = useCallback((entityId: string, selections: CartSelection) => {
-    setItems((current) =>
-      current.map((item) =>
-        item.entityId === entityId ? { ...item, selections } : item,
-      ),
-    );
-  }, []);
-
-  const removeItem = useCallback((entityId: string) => {
-    setItems((current) => current.filter((item) => item.entityId !== entityId));
+  const removeItem = useCallback((entityId: string, selections: CartSelection) => {
+    const key = cartItemKey(entityId, selections);
+    setItems((current) => current.filter((item) => item.key !== key));
   }, []);
 
   const totalItems = useMemo(
@@ -108,14 +112,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     () => ({
       items,
       getQuantity,
-      getSelections,
       setQuantity,
-      setSelections,
       removeItem,
       totalItems,
       totalPrice,
     }),
-    [items, getQuantity, getSelections, setQuantity, setSelections, removeItem, totalItems, totalPrice],
+    [items, getQuantity, setQuantity, removeItem, totalItems, totalPrice],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
