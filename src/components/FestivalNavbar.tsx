@@ -40,7 +40,7 @@ export function FestivalNavbar({ profileSlot }: FestivalNavbarProps) {
             type="button"
             className="logo logoButton"
             aria-label="Les Ardentes — overview"
-            onClick={() => navigate('/#overview')}
+            onClick={() => navigate({ pathname: '/', hash: 'overview' })}
           >
             <img
               className="logoImg"
