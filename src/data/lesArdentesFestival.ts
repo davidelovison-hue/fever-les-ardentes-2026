@@ -46,7 +46,7 @@ export const GALLERY_IMAGES = [
 ];
 
 // Prototype asset (local to avoid CORS/autoplay issues on Pages).
-export const FESTIVAL_HERO_VIDEO = `${BASE}hero-video.mp4`;
+export const FESTIVAL_HERO_VIDEO = `${BASE}hero-video-ardentes.mp4`;
 
 export const FESTIVAL_MEDIA_HERO = {
   video: FESTIVAL_HERO_VIDEO,
